@@ -1,0 +1,20 @@
+// new-project/jsconfig.json
+{
+   "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+         "@styles/*": [
+            "src/styles/*"
+         ],
+         "@assets/*": [
+            "src/assets/*"
+         ],
+         "@js/*": [
+            "src/js/*"
+         ]
+      }
+   },
+   "include": [
+      "src/**/*"
+   ]
+}

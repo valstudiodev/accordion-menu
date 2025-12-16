@@ -1,0 +1,24 @@
+@font-face {
+   font-family: 'iconfont';
+   src:
+      url('/src/assets/fonts/icomoon.woff2') format('woff2');
+   font-weight: normal;
+   font-style: normal;
+   font-display: block;
+}
+
+[class*="--icon-"]::before {
+   font-family: 'iconfont';
+   line-height: 1 !important;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}
+
+[class*="--icon-i-chevron"]::before {
+   content: "\e903";
+}
+
+[class*="--icon-arrow"]::before {
+   content: "\e900";
+}
+

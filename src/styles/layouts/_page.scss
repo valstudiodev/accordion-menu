@@ -1,0 +1,42 @@
+@use '../settings/settings' as *;
+@use '../settings/mixins' as *;
+
+
+.page {
+
+   // .page__hero
+   &__hero {
+      @include adaptiveValue('padding-block',100,50);
+   }
+}
+
+.hero {
+
+   &__container {
+      >* {
+         @include adaptiveValue('margin-bottom', 40, 20);
+
+         &:last-child {
+            margin-bottom: toRem(0);
+         }
+      }
+   }
+
+   // .hero__title
+   &__title {
+      @include adaptiveValue('font-size',54,30);
+      text-align: center;
+   }
+
+   // .hero__image
+   &__image {}
+
+   // .hero__text
+   &__text {
+      p {
+         &:first-child {
+            font-size: toRem(26);
+         }
+      }
+   }
+}

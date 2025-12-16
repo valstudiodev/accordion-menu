@@ -1,0 +1,50 @@
+@use "sass:math";
+// =====================Pages===========================
+
+// =====================Settings===========================
+@use './settings/settings' as *;
+@use './settings/reset';
+@use './settings/_mixins.scss' as *;
+// =====================Layouts===========================
+@use './layouts/header';
+@use './layouts/footer';
+@use './layouts/page';
+// =====================Base===========================
+@use './base/animation';
+@use './base/fonts';
+@use './base/_typography.scss';
+// ====================================================
+@use './components';
+
+
+
+
+body {
+   font-family: "Poppins", sans-serif;
+   // @include typography("M", 400, 0);
+   line-height: 1.5;
+   color: $colorPrimiry;
+   background-color: $bgPrimiry;
+
+   &.scroll-lock {
+      overflow: hidden;
+      touch-action: none;
+      overscroll-behavior: none;
+   }
+}
+
+.wrapper {
+   min-height: 100%;
+   display: flex;
+   flex-direction: column;
+
+   >main {
+      flex-grow: 1;
+   }
+}
+
+[class*="__container"] {
+   max-width: toRem($containerWidth);
+   padding-inline: toRem(math.div($containerPadding, 2));
+   margin: 0 auto;
+}

@@ -1,0 +1,91 @@
+@use '../settings/settings' as *;
+@use '../settings/mixins' as *;
+
+
+.footer {
+   padding-block: toRem(100);
+   // .footer__container
+   &__container {
+      // display: grid;
+      // grid-template-columns: repeat(auto-fill,minmax(min(toRem(320),100%),1fr));
+      display: flex;
+      justify-content: space-between;
+      gap: toRem(30);
+
+      @media (max-width: toEm(580)) {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+   }
+
+   // .footer__column
+   &__column {}
+}
+
+[data-accordion].active {
+   .column-footer__title {
+      &::before {
+         rotate: 270deg;
+      }
+   }
+}
+
+.column-footer {
+   flex: 1 1 33.333%;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: toRem(32);
+
+   // .column-footer__title
+   &__title {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      gap: toRem(16);
+      font-size: toRem(20);
+
+      &::before {
+         rotate: 90deg;
+         font-size: toRem(16);
+         aspect-ratio: 1;
+         transition: rotate 0.3s ease;
+      }
+
+      @media (min-width: toEm(580.98)) {
+
+         &::before {
+            display: none;
+         }
+      }
+   }
+
+   // .column-footer__menu
+   &__menu {
+      display: flex;
+      flex-direction: column;
+      gap: toRem(16);
+      transition: height 0.35s ease;
+      will-change: height;
+
+      @media (max-width: toEm(580)) {
+         height: 0;
+         overflow: hidden;
+      }
+      @media (min-width: toEm(581)) {
+         height: auto !important;
+         overflow: visible;
+      }
+   }
+
+   // .column-footer__item
+   &__item {
+      font-size: toRem(13);
+      text-transform: uppercase;
+   }
+
+   // .column-footer__link
+   &__link {}
+}
