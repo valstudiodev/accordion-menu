@@ -188,6 +188,13 @@ address {
   font-size: 0.8125rem;
   text-transform: uppercase;
 }
+@media (any-hover: hover) and (any-pointer: fine) {
+  .column-footer__link:hover {
+    text-decoration: underline;
+    color: rgb(119, 101, 76);
+  }
+}
+
 @media (min-width: 86.875em) {
   .page__hero {
     padding-block: 100px;
