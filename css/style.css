@@ -191,7 +191,7 @@ address {
 @media (any-hover: hover) and (any-pointer: fine) {
   .column-footer__link:hover {
     text-decoration: underline;
-    color: rgb(119, 101, 76);
+    color: red;
   }
 }
 
@@ -249,6 +249,24 @@ address {
 }
 .hero__text p:first-child {
   font-size: 1.625rem;
+}
+
+.button {
+  text-transform: uppercase;
+  padding: 1.25rem 1.875rem;
+  color: #000;
+  border-radius: 0.625rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  background-color: rgb(218, 197, 167);
+}
+.button:focus {
+  outline: 0.125rem solid red;
+}
+@media (any-hover: hover) and (any-pointer: fine) {
+  .button:hover {
+    background-color: blue;
+  }
 }
 
 @-webkit-keyframes jumpArrow {

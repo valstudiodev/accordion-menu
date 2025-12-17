@@ -40,3 +40,22 @@
       }
    }
 }
+
+.button {
+   text-transform: uppercase;
+   padding: toRem(20) toRem(30);
+   color: $black;
+   border-radius: toRem(10);
+   transition: all 0.3s;
+   background-color: $colorPrimiry;
+
+   &:focus {
+      outline: toRem(2) solid red;
+   }
+
+   @media (any-hover: hover) and (any-pointer: fine) {
+     &:hover {
+      background-color: blue;
+     }
+   }
+}

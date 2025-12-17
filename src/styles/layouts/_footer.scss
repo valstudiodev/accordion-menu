@@ -92,7 +92,8 @@
       @media (any-hover: hover) and (any-pointer: fine) {
         &:hover {
          text-decoration: underline;
-         color: rgb(119, 101, 76);
+         // color: rgb(119, 101, 76);
+         color: red;
         }
       }
    }
