@@ -1,1 +1,36 @@
 @use "sass:math";
+
+
+@mixin hover {
+   html[data-input="mouse"] & {
+      &:hover {
+         @content;
+      }
+   }
+}
+
+@mixin hover-focus {
+   html[data-input="mouse"] & {
+
+      &:focus-visible {
+         @content;
+      }
+   }
+}
+
+// @mixin tap {
+//    html[data-input="touch"] &,
+//    html[data-input="pen"] & {
+//       &:active {
+//          @content;
+//       }
+//    }
+// }
+
+// @mixin focus {
+//    html[data-input="keyboard"] & {
+//       &:focus-visible {
+//          @content;
+//       }
+//    }
+// }

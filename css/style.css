@@ -260,13 +260,11 @@ address {
   transition: all 0.3s;
   background-color: rgb(218, 197, 167);
 }
-.button:focus {
-  outline: 0.125rem solid red;
+html[data-input=mouse] .button:hover {
+  background: red;
 }
-@media (any-hover: hover) and (any-pointer: fine) {
-  .button:hover {
-    background-color: blue;
-  }
+html[data-input=mouse] .button:focus-visible {
+  outline: 2px solid blue;
 }
 
 @-webkit-keyframes jumpArrow {

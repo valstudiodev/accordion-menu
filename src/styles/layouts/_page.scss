@@ -49,13 +49,11 @@
    transition: all 0.3s;
    background-color: $colorPrimiry;
 
-   &:focus {
-      outline: toRem(2) solid red;
-   }
+   @include hover {
+         background: red;
+      }
 
-   @media (any-hover: hover) and (any-pointer: fine) {
-     &:hover {
-      background-color: blue;
-     }
+   @include hover-focus {
+      outline: 2px solid blue;
    }
 }
