@@ -19,36 +19,36 @@ function windowLoad() {
    // typeSwitcher();
 }
 
-const html = document.documentElement;
-
-html.dataset.input =
-   navigator.maxTouchPoints > 0 ? 'touch' : 'mouse';
-
-window.addEventListener('pointerdown', e => {
-   html.dataset.input = e.pointerType === 'mouse'
-      ? 'mouse'
-      : 'touch';
-});
-
-
-
 // const html = document.documentElement;
 
-// function setInput(type) {
-//    html.dataset.input = type;
-// }
-
-// setInput(
-//    navigator.maxTouchPoints > 0 ? 'touch' : 'mouse'
-// );
+// html.dataset.input =
+//    navigator.maxTouchPoints > 0 ? 'touch' : 'mouse';
 
 // window.addEventListener('pointerdown', e => {
-//    setInput(e.pointerType); // mouse | touch | pen
+//    html.dataset.input = e.pointerType === 'mouse'
+//       ? 'mouse'
+//       : 'touch';
 // });
 
-// window.addEventListener('keydown', () => {
-//    setInput('keyboard');
-// });
+
+
+const html = document.documentElement;
+
+function setInput(type) {
+   html.dataset.input = type;
+}
+
+setInput(
+   navigator.maxTouchPoints > 0 ? 'touch' : 'mouse'
+);
+
+window.addEventListener('pointerdown', e => {
+   setInput(e.pointerType); // mouse | touch | pen
+});
+
+window.addEventListener('keydown', () => {
+   setInput('keyboard');
+});
 
 
 

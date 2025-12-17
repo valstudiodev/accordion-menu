@@ -53,7 +53,10 @@
          background: red;
       }
 
-   @include hover-focus {
+   @include focus {
       outline: 2px solid blue;
+   }
+   @include tap {
+      background-color: green;
    }
 }
