@@ -1,15 +1,34 @@
 @use '../settings/settings' as *;
 @use '../settings/mixins' as *;
 
-.menu {
-   position: relative;
 
+.menu-dropdown {
+
+   // .menu-dropdown__list
    &__list {
       display: flex;
       align-items: center;
       gap: toRem(20);
    }
 
+   // .menu-dropdown__item
+   &__item {
+
+      // .menu-dropdown__item--submenu
+      &--submenu {
+         position: relative;
+         &.is-active {
+            .menu-dropdown__submenu {
+               opacity: 1;
+               visibility: visible;
+               pointer-events: auto;
+               transform: translateY(0);
+            }
+         }
+      }
+   }
+
+   // .menu-dropdown__link
    &__link {
       padding: 10px 15px;
       display: inline-block;
@@ -36,36 +55,52 @@
       }
    }
 
-   &__item {
+   // .menu-dropdown__submenu
+   &__submenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
 
-      &--has-children {
-         &.is-active {
-            .submenu {
-               display: block;
-            }
-         }
-      }
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
 
-   // Клас відкритого підменю (для touch)
-
+      transform: translateY(-15px);
+      transition:
+         opacity .3s ease,
+         transform .3s ease,
+         visibility .3s ease;
    }
-
-
 }
 
-// Підменю за замовчуванням приховане
-.submenu {
-   display: none;
+.submenu-dropdown {
    position: absolute; // поверх інших елементів
    top: 100%; // нижче батьківського link
    left: 0;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: toRem(10);
    background: #444;
    padding: 10px 0;
    min-width: 150px;
    z-index: 10;
+   padding-left: toRem(10);
 
-   &__link {
+   // .submenu-dropdowne__link
+   &__link {}
+}
 
+html[data-input="mouse"] {
+   .menu-dropdown__item--submenu {
+      &:hover > {
+         .menu-dropdown__submenu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+         }
+      }
    }
 }
 
@@ -74,16 +109,15 @@
 //    display: block;
 // }
 
-html[data-input="mouse"],
-html[data-input="keyboard"] {
-   .menu__item {
-      &:hover {
-         .submenu {
-            display: block;
-         }
-      }
-   }
-}
+// html[data-input="mouse"] {
+//    .menu-dropdowne__item {
+//       &:hover {
+//          .submenu-dropdowne {
+//             display: block;
+//          }
+//       }
+//    }
+// }
 
 // html[data-input="mouse"] {
 //    .menu__item {
@@ -104,7 +138,7 @@ html[data-input="keyboard"] {
 
   html[data-input="keyboard"] {
    .is-active {
-      .submenu {
+      .submenu-dropdowne {
          display: block;
       }
    }
