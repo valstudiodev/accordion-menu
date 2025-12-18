@@ -6,8 +6,8 @@
    <link rel="icon" type="image/svg+xml" href="/accordion-menu/favicon.ico" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
    <title>Accordion-menu</title>
-  <script type="module" crossorigin src="/accordion-menu/assets/main.65db6248.js"></script>
-  <link rel="stylesheet" href="/accordion-menu/assets/index.fc4f6ca4.css">
+  <script type="module" crossorigin src="/accordion-menu/assets/main.5b8e7081.js"></script>
+  <link rel="stylesheet" href="/accordion-menu/assets/index.44efe83a.css">
 </head>
 
 <body>
@@ -15,21 +15,27 @@
    <div class="wrapper">
       <header class="header">
          <div class="header__container">
-            <nav class="menu">
-               <ul class="menu__list">
-                  <li class="menu__item menu__item--has-children">
-                     <a href="#" class="menu__link">Products</a>
-                     <ul class="submenu">
-                        <li><a href="#" class="submenu__link">Item 1</a></li>
-                        <li><a href="#" class="submenu__link">Item 2</a></li>
+            <nav class="menu-dropdown">
+               <ul class="menu-dropdown__list">
+                  <li class="menu-dropdown__item menu-dropdown__item--submenu">
+                     <a href="#" class="menu-dropdown__link">Products</a>
+                     <ul class="menu-dropdown__submenu submenu-dropdown">
+                        <li><a href="#" class="submenu-dropdown__link">Item 1</a></li>
+                        <li><a href="#" class="submenu-dropdown__link">Item 2</a></li>
                      </ul>
                   </li>
-                  <li class="menu__item">
-                     <a href="#" class="menu__link">About</a>
+                  <li class="menu-dropdown__item menu-dropdown__item--submenu">
+                     <a href="#" class="menu-dropdown__link">About</a>
+                     <ul class="menu-dropdown__submenu submenu-dropdown">
+                        <li><a href="#" class="submenu-dropdown__link">Item 1</a></li>
+                        <li><a href="#" class="submenu-dropdown__link">Item 2</a></li>
+                        <li><a href="#" class="submenu-dropdown__link">Item 3</a></li>
+                        <li><a href="#" class="submenu-dropdown__link">Item 4</a></li>
+                     </ul>
                   </li>
+                  <li class="menu-dropdown__item menu-dropdown__item--submenu is-active">
                </ul>
             </nav>
-
          </div>
       </header>
 
