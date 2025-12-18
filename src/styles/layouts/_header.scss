@@ -43,10 +43,10 @@
       }
 
       // Tap на touch/pen
-      @include tap {
-         background-color: #555;
-         color: #ff0;
-      }
+      // @include tap {
+      //    background-color: #555;
+      //    color: #ff0;
+      // }
 
       // Focus на keyboard
       @include focus {

@@ -118,10 +118,6 @@ html[data-input=mouse] .menu-dropdown__link:hover {
   background-color: #333;
   color: #0f0;
 }
-html[data-input=touch] .menu-dropdown__link:active, html[data-input=pen] .menu-dropdown__link:active {
-  background-color: #555;
-  color: #ff0;
-}
 html[data-input=keyboard] .menu-dropdown__link:focus-visible {
   outline: 2px solid #00f;
   background-color: #222;
