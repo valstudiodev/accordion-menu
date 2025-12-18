@@ -89,12 +89,9 @@
    // .column-footer__link
    &__link {
 
-      @media (any-hover: hover) and (any-pointer: fine) {
-        &:hover {
-         text-decoration: underline;
-         // color: rgb(119, 101, 76);
+      @include hover {
          color: red;
-        }
+         text-decoration: underline;
       }
    }
 }

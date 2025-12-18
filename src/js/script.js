@@ -12,6 +12,8 @@ function windowLoad() {
    isMobile = { Android: function () { return navigator.userAgent.match(/Android/i); }, BlackBerry: function () { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function () { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function () { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function () { return navigator.userAgent.match(/IEMobile/i); }, any: function () { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); } };
    isMobile.any() ? document.body.setAttribute('data-touch', '') : null
 
+   initNavigation();
+   // initInputMode();
    // slidersInit();
    // scrollHeader();
    // toggleCardContent();
@@ -19,38 +21,139 @@ function windowLoad() {
    // typeSwitcher();
 }
 
-// const html = document.documentElement;
 
-// html.dataset.input =
-//    navigator.maxTouchPoints > 0 ? 'touch' : 'mouse';
+// function initInputMode() {
+//    const html = document.documentElement;
+//    let lockedByKeyboard = false;
 
-// window.addEventListener('pointerdown', e => {
-//    html.dataset.input = e.pointerType === 'mouse'
-//       ? 'mouse'
-//       : 'touch';
-// });
+//    function set(type) {
+//       html.dataset.input = type;
+//    }
 
+//    // keyboard — має пріоритет
+//    window.addEventListener('keydown', e => {
+//       if (e.key === 'Tab') {
+//          lockedByKeyboard = true;
+//          set('keyboard');
+//       }
+//    });
 
+//    // mouse hover — тільки якщо keyboard не активний
+//    window.addEventListener('pointermove', e => {
+//       if (
+//          e.pointerType === 'mouse' &&
+//          !lockedByKeyboard
+//       ) {
+//          set('mouse');
+//       }
+//    });
 
-const html = document.documentElement;
+//    // реальний клік мишкою знімає keyboard-lock
+//    window.addEventListener('pointerdown', e => {
+//       if (e.pointerType === 'mouse') {
+//          lockedByKeyboard = false;
+//          set('mouse');
+//       } else {
+//          lockedByKeyboard = false;
+//          set('touch');
+//       }
+//    });
+// }
 
-function setInput(type) {
-   html.dataset.input = type;
+function initNavigation() {
+   const html = document.documentElement;
+   let lockedByKeyboard = false;
+
+   function setInputMode(type) {
+      html.dataset.input = type;
+   }
+
+   // Початковий стан
+   const isTouchInitial = window.matchMedia('(pointer: coarse)').matches;
+   setInputMode(isTouchInitial ? 'touch' : 'mouse');
+
+   // Keyboard
+   window.addEventListener('keydown', e => {
+      if (e.key === 'Tab') {
+         lockedByKeyboard = true;
+         setInputMode('keyboard');
+      }
+   });
+
+   // Mouse hover
+   window.addEventListener('pointermove', e => {
+      if (e.pointerType === 'mouse' && !lockedByKeyboard) {
+         setInputMode('mouse');
+      }
+   }, { passive: true });
+
+   // Pointer down
+   window.addEventListener('pointerdown', e => {
+      if (e.pointerType === 'mouse') {
+         lockedByKeyboard = false;
+         setInputMode('mouse');
+      } else {
+         lockedByKeyboard = false;
+         setInputMode('touch');
+      }
+   });
+
+   // Меню з підменю
+   const menuItems = document.querySelectorAll('.menu__item--has-children');
+
+   menuItems.forEach(item => {
+      const link = item.querySelector('.menu__link');
+
+      // Клік на touch/pen
+      link.addEventListener('click', e => {
+         if (html.dataset.input === 'touch' || html.dataset.input === 'pen') {
+            if (!item.classList.contains('is-active')) {
+               e.preventDefault();
+               menuItems.forEach(other => other !== item && other.classList.remove('is-active'));
+               item.classList.add('is-active');
+            }
+         }
+      });
+
+      // Keyboard: Enter / Space відкриває/закриває підменю
+      link.addEventListener('keydown', e => {
+         if (html.dataset.input === 'keyboard' && (e.key === 'Enter' || e.key === ' ')) {
+            e.preventDefault();
+            const isOpen = item.classList.contains('is-active');
+            menuItems.forEach(other => other !== item && other.classList.remove('is-active'));
+            if (!isOpen) item.classList.add('is-active');
+            else item.classList.remove('is-active');
+         }
+      });
+
+      // Keyboard: відкриття при фокусі (focusin)
+      link.addEventListener('focus', () => {
+         if (html.dataset.input === 'keyboard') {
+            menuItems.forEach(other => other !== item && other.classList.remove('is-active'));
+            item.classList.add('is-active');
+         }
+      });
+
+      // Keyboard: закриття при втраті фокусу
+      link.addEventListener('blur', e => {
+         if (html.dataset.input === 'keyboard') {
+            // Якщо новий фокус не всередині цього item, знімаємо клас
+            if (!item.contains(e.relatedTarget)) {
+               item.classList.remove('is-active');
+            }
+         }
+      });
+   });
+
+   // Закриття при кліку поза меню
+   document.addEventListener('click', e => {
+      if (!e.target.closest('.menu__item--has-children')) {
+         menuItems.forEach(item => item.classList.remove('is-active'));
+      }
+   });
 }
 
-setInput(
-   navigator.maxTouchPoints > 0 ? 'touch' : 'mouse'
-);
-
-window.addEventListener('pointerdown', e => {
-   setInput(e.pointerType); // mouse | touch | pen
-});
-
-window.addEventListener('keydown', () => {
-   setInput('keyboard');
-});
-
-
+document.addEventListener('DOMContentLoaded', initNavigation);
 
 
 

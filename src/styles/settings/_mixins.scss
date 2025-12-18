@@ -9,15 +9,6 @@
    }
 }
 
-// @mixin hover-focus {
-//    html[data-input="mouse"] & {
-
-//       &:focus-visible {
-//          @content;
-//       }
-//    }
-// }
-
 @mixin tap {
    html[data-input="touch"] &,
    html[data-input="pen"] & {

@@ -1,2 +1,112 @@
 @use '../settings/settings' as *;
 @use '../settings/mixins' as *;
+
+.menu {
+   position: relative;
+
+   &__list {
+      display: flex;
+      align-items: center;
+      gap: toRem(20);
+   }
+
+   &__link {
+      padding: 10px 15px;
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      transition: background-color 0.2s, color 0.2s;
+
+      // Hover на mouse
+      @include hover {
+         background-color: #333;
+         color: #0f0;
+      }
+
+      // Tap на touch/pen
+      @include tap {
+         background-color: #555;
+         color: #ff0;
+      }
+
+      // Focus на keyboard
+      @include focus {
+         outline: 2px solid #00f;
+         background-color: #222;
+      }
+   }
+
+   &__item {
+
+      &--has-children {
+         &.is-active {
+            .submenu {
+               display: block;
+            }
+         }
+      }
+
+   // Клас відкритого підменю (для touch)
+
+   }
+
+
+}
+
+// Підменю за замовчуванням приховане
+.submenu {
+   display: none;
+   position: absolute; // поверх інших елементів
+   top: 100%; // нижче батьківського link
+   left: 0;
+   background: #444;
+   padding: 10px 0;
+   min-width: 150px;
+   z-index: 10;
+
+   &__link {
+
+   }
+}
+
+// Клас відкритого підменю (для touch)
+// .menu__item.is-active .submenu {
+//    display: block;
+// }
+
+html[data-input="mouse"],
+html[data-input="keyboard"] {
+   .menu__item {
+      &:hover {
+         .submenu {
+            display: block;
+         }
+      }
+   }
+}
+
+// html[data-input="mouse"] {
+//    .menu__item {
+//       &:hover {
+//          .submenu {
+//             display: block;
+//          }
+//       }
+//    }
+// }
+
+//  html[data-input="keyboard"]  {
+//     &.is-active .submenu {
+//        display: block;
+//     }
+//  }
+
+
+  html[data-input="keyboard"] {
+   .is-active {
+      .submenu {
+         display: block;
+      }
+   }
+}
+

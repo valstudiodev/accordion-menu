@@ -86,6 +86,61 @@ address {
   font-style: normal;
 }
 
+.menu {
+  position: relative;
+}
+.menu__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1.25rem;
+}
+.menu__link {
+  padding: 10px 15px;
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
+}
+html[data-input=mouse] .menu__link:hover {
+  background-color: #333;
+  color: #0f0;
+}
+html[data-input=touch] .menu__link:active, html[data-input=pen] .menu__link:active {
+  background-color: #555;
+  color: #ff0;
+}
+html[data-input=keyboard] .menu__link:focus-visible {
+  outline: 2px solid #00f;
+  background-color: #222;
+}
+.menu__item--has-children.is-active .submenu {
+  display: block;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #444;
+  padding: 10px 0;
+  min-width: 150px;
+  z-index: 10;
+}
+html[data-input=mouse] .menu__item:hover .submenu,
+html[data-input=keyboard] .menu__item:hover .submenu {
+  display: block;
+}
+
+html[data-input=keyboard] .is-active .submenu {
+  display: block;
+}
+
 .footer {
   padding-block: 6.25rem;
 }
@@ -188,11 +243,9 @@ address {
   font-size: 0.8125rem;
   text-transform: uppercase;
 }
-@media (any-hover: hover) and (any-pointer: fine) {
-  .column-footer__link:hover {
-    text-decoration: underline;
-    color: red;
-  }
+html[data-input=mouse] .column-footer__link:hover {
+  color: red;
+  text-decoration: underline;
 }
 
 @media (min-width: 86.875em) {
@@ -265,9 +318,6 @@ html[data-input=mouse] .button:hover {
 }
 html[data-input=keyboard] .button:focus-visible {
   outline: 2px solid blue;
-}
-html[data-input=touch] .button:active, html[data-input=pen] .button:active {
-  background-color: green;
 }
 
 @-webkit-keyframes jumpArrow {
