@@ -23,7 +23,7 @@ body {
    font-family: "Poppins", sans-serif;
    // @include typography("M", 400, 0);
    line-height: 1.5;
-   color: $colorPrimiry;
+   color: $white;
    background-color: $bgPrimiry;
 
    &.scroll-lock {
@@ -47,4 +47,25 @@ body {
    max-width: toRem($containerWidth);
    padding-inline: toRem(math.div($containerPadding, 2));
    margin: 0 auto;
+}
+
+html[data-input="mouse"] {
+   .menu-dropdown__item--submenu {
+      &:hover> {
+         .menu-dropdown__submenu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+         }
+      }
+   }
+}
+
+html[data-input="keyboard"] {
+   .is-active {
+      .submenu-dropdowne {
+         display: block;
+      }
+   }
 }

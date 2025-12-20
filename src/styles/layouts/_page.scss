@@ -26,6 +26,7 @@
    &__title {
       @include adaptiveValue('font-size',54,30);
       text-align: center;
+      color: $brandPrimary;
    }
 
    // .hero__image
@@ -45,16 +46,17 @@
    text-transform: uppercase;
    padding: toRem(20) toRem(30);
    color: $black;
+   font-weight: 700;
    border-radius: toRem(10);
    transition: all 0.3s;
-   background-color: $colorPrimiry;
+   background-color: $brandPrimary;
 
    @include hover {
-         background: red;
+         background: $brandDark;
       }
 
    @include focus {
-      outline: 2px solid blue;
+      outline: 2px solid $brandDark;
    }
 
 }

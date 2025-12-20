@@ -115,8 +115,7 @@ address {
   transition: background-color 0.2s, color 0.2s;
 }
 html[data-input=mouse] .menu-dropdown__link:hover {
-  background-color: #333;
-  color: #0f0;
+  background-color: #00ADB5;
 }
 html[data-input=keyboard] .menu-dropdown__link:focus-visible {
   outline: 2px solid #00f;
@@ -157,19 +156,14 @@ html[data-input=keyboard] .menu-dropdown__link:focus-visible {
   padding: 10px 0;
   min-width: 150px;
   z-index: 10;
-  padding-left: 0.625rem;
+  padding: 0.625rem;
 }
-html[data-input=mouse] .menu-dropdown__item--submenu:hover > .menu-dropdown__submenu {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  -webkit-transform: translateY(0);
-      -ms-transform: translateY(0);
-          transform: translateY(0);
+.submenu-dropdown__link {
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
 }
-
-html[data-input=keyboard] .is-active .submenu-dropdowne {
-  display: block;
+html[data-input=mouse] .submenu-dropdown__link:hover {
+  color: #00ADB5;
 }
 
 .footer {
@@ -274,8 +268,12 @@ html[data-input=keyboard] .is-active .submenu-dropdowne {
   font-size: 0.8125rem;
   text-transform: uppercase;
 }
+.column-footer__link {
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
 html[data-input=mouse] .column-footer__link:hover {
-  color: red;
+  color: #00ADB5;
   text-decoration: underline;
 }
 
@@ -315,6 +313,7 @@ html[data-input=mouse] .column-footer__link:hover {
 }
 .hero__title {
   text-align: center;
+  color: #12F7D6;
 }
 @media (min-width: 86.875em) {
   .hero__title {
@@ -339,16 +338,17 @@ html[data-input=mouse] .column-footer__link:hover {
   text-transform: uppercase;
   padding: 1.25rem 1.875rem;
   color: #000;
+  font-weight: 700;
   border-radius: 0.625rem;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  background-color: rgb(218, 197, 167);
+  background-color: #12F7D6;
 }
 html[data-input=mouse] .button:hover {
-  background: red;
+  background: #00ADB5;
 }
 html[data-input=keyboard] .button:focus-visible {
-  outline: 2px solid blue;
+  outline: 2px solid #00ADB5;
 }
 
 @-webkit-keyframes jumpArrow {
@@ -553,8 +553,8 @@ html[data-input=keyboard] .button:focus-visible {
 body {
   font-family: "Poppins", sans-serif;
   line-height: 1.5;
-  color: rgb(218, 197, 167);
-  background-color: rgb(14, 14, 14);
+  color: #fff;
+  background-color: #292F36;
 }
 body.scroll-lock {
   overflow: hidden;
@@ -584,4 +584,17 @@ body.scroll-lock {
   max-width: 86.875rem;
   padding-inline: 0.9375rem;
   margin: 0 auto;
+}
+
+html[data-input=mouse] .menu-dropdown__item--submenu:hover > .menu-dropdown__submenu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+}
+
+html[data-input=keyboard] .is-active .submenu-dropdowne {
+  display: block;
 }

@@ -88,9 +88,9 @@
 
    // .column-footer__link
    &__link {
-
+      transition: color 0.3s;
       @include hover {
-         color: red;
+         color: $brandDark;
          text-decoration: underline;
       }
    }

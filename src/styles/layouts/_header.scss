@@ -38,8 +38,7 @@
 
       // Hover на mouse
       @include hover {
-         background-color: #333;
-         color: #0f0;
+         background-color: $brandDark;
       }
 
       // Tap на touch/pen
@@ -85,24 +84,19 @@
    padding: 10px 0;
    min-width: 150px;
    z-index: 10;
-   padding-left: toRem(10);
+   padding: toRem(10);
+
 
    // .submenu-dropdowne__link
-   &__link {}
-}
-
-html[data-input="mouse"] {
-   .menu-dropdown__item--submenu {
-      &:hover > {
-         .menu-dropdown__submenu {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-            transform: translateY(0);
-         }
+   &__link {
+      transition: color 0.3s;
+      @include hover {
+         color: $brandDark;
       }
    }
 }
+
+
 
 // Клас відкритого підменю (для touch)
 // .menu__item.is-active .submenu {
@@ -136,11 +130,4 @@ html[data-input="mouse"] {
 //  }
 
 
-  html[data-input="keyboard"] {
-   .is-active {
-      .submenu-dropdowne {
-         display: block;
-      }
-   }
-}
 
