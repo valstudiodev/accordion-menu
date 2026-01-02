@@ -4,59 +4,125 @@
 
 .page {
 
-   // .page__hero
-   &__hero {
-      @include adaptiveValue('padding-block',100,50);
+   &__accordion {
+      @include adaptiveValue('padding-block', 100, 50);
    }
 }
 
-.hero {
+
+// ===========================================================================================
+// -----------------------------
+// accordion-menu
+// -----------------------------
+.accordion-page {
 
    &__container {
-      >* {
-         @include adaptiveValue('margin-bottom', 40, 20);
-
-         &:last-child {
-            margin-bottom: toRem(0);
-         }
-      }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      @include adaptiveValue('column-gap', 30, 15);
+      @include adaptiveValue('row-gap', 30, 15);
+   }
+}
+.accordion-menu {
+   max-width: toRem(500);
+   position: relative;
+   border-radius: toRem(6);
+   counter-increment: item;
+   background-color: $bgPrimary;
+   box-shadow:
+      0 0 14px rgba(20, 120, 80, 0.40),
+      0 0 28px rgba(20, 120, 80, 0.25),
+      0 0 45px rgba(20, 120, 80, 0.15);
+   // .accordion-menu__inner
+   &__inner {
+      padding: toRem(32);
+      @include adaptiveValue('row-gap', 30, 15);
    }
 
-   // .hero__title
+   // .accordion-menu__top
+   &__top {}
+
+   // .accordion-menu__body
+   &__body {}
+}
+
+.top-accordion {
+
+   // .top-accordion__header
+   &__header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+      gap: toRem(10);
+   }
+
+   // .top-accordion__title
    &__title {
-      @include adaptiveValue('font-size',54,30);
-      text-align: center;
-      color: $brandPrimary;
+      position: relative;
+      @include adaptiveValue('font-size', 24, 20);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: toRem(1.5);
+      color: $white;
    }
 
-   // .hero__image
-   &__image {}
+   // .top-accordion__icon
+   &__icon {
+      position: relative;
+      width: toRem(30);
+      height: toRem(30);
+      flex-shrink: 0;
+      z-index: 10;
+      background-color: $bgSecondary ;
+      border-radius: toRem(50);
+      border: toRem(1) solid $brandPrimary;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
 
-   // .hero__text
-   &__text {
-      p {
-         &:first-child {
-            font-size: toRem(26);
+      span {
+         position: relative;
+         width: toRem(10);
+         aspect-ratio: 1;
+         z-index: 10;
+         flex-shrink: 0;
+         transition: rotate 0.3s ease;
+
+         &::before,
+         &::after {
+            content: "";
+            position: absolute;
+            width: toRem(10);
+            height: toRem(1);
+            background-color: $brandDark;
+            border-radius: toRem(6);
+         }
+
+         &::before {
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+         }
+
+         &::after {
+            rotate: 90deg;
+            left: 50%;
+            top: 50%;
+            translate: -50% -50%;
+            transition: rotate 0.3s ease;
          }
       }
    }
 }
 
-.button {
-   text-transform: uppercase;
-   padding: toRem(20) toRem(30);
-   color: $black;
-   font-weight: 700;
-   border-radius: toRem(10);
-   transition: all 0.3s;
-   background-color: $brandPrimary;
+.body-accordion {
 
-   @include hover {
-         background: $brandDark;
-      }
-
-   @include focus {
-      outline: 2px solid $brandDark;
+   // .body-accordion__content
+   &__content {
+      padding-top: toRem(20);
    }
-
 }

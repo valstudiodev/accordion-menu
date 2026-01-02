@@ -24,7 +24,7 @@ body {
    // @include typography("M", 400, 0);
    line-height: 1.5;
    color: $white;
-   background-color: $bgPrimiry;
+   background-color: $bgPrimary;
 
    &.scroll-lock {
       overflow: hidden;
@@ -67,5 +67,32 @@ html[data-input="keyboard"] {
       .submenu-dropdowne {
          display: block;
       }
+   }
+}
+
+[data-accordion-body] {
+   height: 0;
+   overflow: hidden;
+   transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-accordion] {
+   &.active {
+      .top-accordion__title {
+         color: $brandPrimary;
+      }
+      .top-accordion__icon {
+         span {
+            &::after {
+               rotate: -180deg;
+            }
+         }
+      }
+   }
+}
+
+[data-accordion-icon] {
+   .active & {
+      background-color: $bgPrimary;
    }
 }
