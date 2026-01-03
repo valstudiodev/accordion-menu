@@ -162,6 +162,14 @@ address {
   background-color: #292F36;
   -webkit-box-shadow: 0 0 14px rgba(20, 120, 80, 0.4), 0 0 28px rgba(20, 120, 80, 0.25), 0 0 45px rgba(20, 120, 80, 0.15);
           box-shadow: 0 0 14px rgba(20, 120, 80, 0.4), 0 0 28px rgba(20, 120, 80, 0.25), 0 0 45px rgba(20, 120, 80, 0.15);
+  opacity: 0;
+  translate: 0 1.25rem;
+  -webkit-transition: translate 0.4s ease, opacity 0.5s ease;
+  transition: translate 0.4s ease, opacity 0.5s ease;
+}
+.accordion-menu.animate {
+  opacity: 1;
+  translate: 0 0;
 }
 .accordion-menu__inner {
   padding: 2rem;

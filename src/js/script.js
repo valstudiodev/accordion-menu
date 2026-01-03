@@ -2,14 +2,16 @@
 
 import { initInputMode } from './inputMode';
 import { initDropdowns } from './dropdown';
+import { initLoadPage } from './loader';
 
 // ===========================================================================================
 // -----------------------------
 // ГОЛОВНИЙ ЗАПУСК
 // -----------------------------
 function initApp() {
-   initInputMode();
-   initDropdowns();
+   initInputMode()
+   initDropdowns()
+   initLoadPage()
 }
 
 if (document.readyState === 'loading') {
