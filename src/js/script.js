@@ -19,51 +19,49 @@ if (document.readyState === 'loading') {
 }
 
 
-
 // ===========================================================================================
 // -----------------------------
 // accordions
 // -----------------------------
-const accordions = document.querySelectorAll('[data-accordion]');
-const mq = window.matchMedia('(max-width: 581px)');
+document.addEventListener('click', (e) => {
+   const btn = e.target.closest('[data-accordion-btn]');
+   if (!btn) return;
 
-function setupAccordions() {
-   accordions.forEach(item => {
-      const btn = item.querySelector('[data-accordion-btn]');
-      const body = item.querySelector('[data-accordion-body]');
-      if (!btn || !body) return;
+   const accordionParent = btn.closest('[data-accordion]');
+   if (!accordionParent) return;
 
-      if (!mq.matches) {
-         item.classList.remove('active');
-         body.style.height = '';
-         return;
-      }
+   const body = accordionParent.querySelector('[data-accordion-body]');
+   const icon = btn.querySelector('[data-accordion-icon]');
+   if (!body) return;
 
-      body.style.height = item.classList.contains('active')
-         ? body.scrollHeight + 'px'
-         : '0px';
+   const isOpen = accordionParent.classList.contains('active');
 
-      btn.onclick = () => {
-         const isOpen = item.classList.contains('active');
+   if (!isOpen) {
+      accordionParent.classList.add('active');
+      if (icon) icon.classList.add('icon-active');
 
-         if (isOpen) {
-            body.style.height = body.scrollHeight + 'px';
-            requestAnimationFrame(() => body.style.height = '0px');
-            item.classList.remove('active');
-         } else {
-            item.classList.add('active');
-            body.style.height = body.scrollHeight + 'px';
+      body.style.height = body.scrollHeight + 'px';
 
-            body.addEventListener('transitionend', () => {
+      body.addEventListener(
+         'transitionend',
+         () => {
+            if (accordionParent.classList.contains('active')) {
                body.style.height = 'auto';
-            }, { once: true });
-         }
-      };
-   });
-}
+            }
+         },
+         { once: true }
+      );
+   } else {
+      body.style.height = body.scrollHeight + 'px';
+      body.offsetHeight;
 
-setupAccordions();
-mq.addEventListener('change', setupAccordions);
+      requestAnimationFrame(() => {
+         accordionParent.classList.remove('active');
+         if (icon) icon.classList.remove('icon-active');
+         body.style.height = '0px';
+      });
+   }
+});
 
 
 
